@@ -34,7 +34,7 @@ namespace FixUnofficialPatches
 
             logger = Logger;
 
-            achievementFix = Config.Bind("General", "AcievementFix", false, "Enable this to apply the achievement unlock fix for 4 broken achievements.");
+            achievementFix = Config.Bind("General", "AchievementFix", false, "Enable this to apply the achievement unlock fix for 4 broken achievements.");
 
             Harmony.CreateAndPatchAll(typeof(Plugin));
         }
