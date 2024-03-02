@@ -1,0 +1,69 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.25" IncludeAssets="compile" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+	<!-- Steam Deployments -->
+	<PropertyGroup Condition="Exists('c:\Program Files (x86)\Steam\steamapps\common\Forge Industry')">
+		<GameDir>c:\Program Files (x86)\Steam\steamapps\common\Forge Industry\</GameDir>
+		<GameManaged>$(GameDir)\Forge Industry_Data\Managed\</GameManaged>
+		<PluginsFolder>$(GameDir)\BepInEx\plugins</PluginsFolder>
+	</PropertyGroup>
+	<PropertyGroup Condition="Exists('e:\Steam\steamapps\common\Forge Industry')">
+		<GameDir>e:\Steam\steamapps\common\Forge Industry\</GameDir>
+		<GameManaged>$(GameDir)\Forge Industry_Data\Managed\</GameManaged>
+		<PluginsFolder>$(GameDir)\BepInEx\plugins</PluginsFolder>
+	</PropertyGroup>
+	
+	<!-- Deployment target directories -->
+	<PropertyGroup>
+		<Destination1>$(PluginsFolder)\akarnokd - $(Description)</Destination1>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Reference Include="Assembly-CSharp">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="ForgeIndustry">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)\ForgeIndustry.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Unity.InputSystem">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)unity.inputsystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Unity.TextMeshPro">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)unity.textmeshpro.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="UnityEngine.UI">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)unityengine.ui.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Unity.InputSystem">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>$(GameManaged)unity.inputsystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+
+	<!--
+	<ItemGroup Condition="'$(ProjectName)' != 'LibCommon'">
+		<Compile Include="..\LibCommon\UnityExt.cs" Link="UnityExt.cs" />
+	</ItemGroup>
+	-->
+
+</Project>

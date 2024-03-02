@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <AssemblyName>ZipRest</AssemblyName>
+    <Description>Zip the other mods</Description>
+    <Version>1.0.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <Platforms>AnyCPU</Platforms>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+	<Import Project="$(SolutionDir)\solution_private.targets" />
+
+  <Target Name="CopyDLLs" AfterTargets="Build">
+    <ZipDirectory
+            SourceDirectory="$(OutputPath)\..\..\..\..\akarnokd-all"
+            DestinationFile="$(OutputPath)\..\..\..\..\akarnokd-all.zip"
+            Overwrite="true" />
+  </Target>
+</Project>
