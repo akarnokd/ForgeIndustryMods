@@ -42,5 +42,16 @@ namespace FixUnofficialPatches
             ____harbor = harbor;
             ____harborWindow = harborWindow;
         }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(MarketPlaceWindow), nameof(MarketPlaceWindow.Initialize))]
+        static void MarketPlaceWindow_Initialize(GameObject ____orderTab)
+        {
+            var csf = ____orderTab.GetComponentInChildren<ContentSizeFitter>();
+            csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            var sr = ____orderTab.GetComponentInChildren<ScrollRect>();
+            sr.scrollSensitivity = 5;
+        }
     }
 }
